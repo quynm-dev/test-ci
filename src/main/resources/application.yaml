@@ -1,0 +1,6 @@
+ktor:
+  application:
+    modules:
+      - com.ktor.skeleton.ApplicationKt.module
+  deployment:
+    port: 8080
