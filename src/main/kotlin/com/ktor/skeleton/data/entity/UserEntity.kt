@@ -18,7 +18,7 @@ object Users: IntIdTable("users") {
 }
 
 class UserEntity(id: EntityID<Int>): IntEntity(id) {
-    companion object : IntEntityClass<UserEntity>(Users)
+    companion object: IntEntityClass<UserEntity>(Users)
 
     var username by Users.username
     var password by Users.password

@@ -18,7 +18,7 @@ object Books: IntIdTable("books") {
 }
 
 class BookEntity(id: EntityID<Int>): IntEntity(id) {
-    companion object : IntEntityClass<BookEntity>(Books)
+    companion object: IntEntityClass<BookEntity>(Books)
 
     var title by Books.title
     var userId by UserEntity referencedOn Books.userId

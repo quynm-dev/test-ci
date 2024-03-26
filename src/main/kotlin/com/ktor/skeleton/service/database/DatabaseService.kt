@@ -1,4 +1,4 @@
-package com.ktor.skeleton.service
+package com.ktor.skeleton.service.database
 
 import com.ktor.skeleton.data.entity.Books
 import com.ktor.skeleton.data.entity.Users
