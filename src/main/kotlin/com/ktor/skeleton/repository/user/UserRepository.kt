@@ -6,8 +6,11 @@ import com.ktor.skeleton.data.model.UserModel
 import com.ktor.skeleton.helper.logger
 import com.ktor.skeleton.helper.wrapperTransaction
 import com.ktor.skeleton.mapper.toModel
+import com.toxicbakery.bcrypt.Bcrypt
 import org.jetbrains.exposed.sql.selectAll
 import org.koin.core.annotation.Singleton
+
+private val PASSWORD_SALT = System.getenv("PASSWORD_SALT")
 
 @Singleton
 class UserRepository: IUserRepository {
@@ -19,8 +22,19 @@ class UserRepository: IUserRepository {
         }
     }
 
-    override suspend fun create(): Int? {
-        TODO("Not yet implemented")
+    override suspend fun create(userModel: UserModel): UserModel {
+        return wrapperTransaction {
+            logger.debug { "[UserRepository:create]" }
+            val userEntity =  UserEntity.new {
+                username = userModel.username
+                password = Bcrypt.hash(userModel.password.toString() + PASSWORD_SALT, 10).toString()
+                name = userModel.name
+                email = userModel.email
+                age = userModel.age
+            }
+
+            return@wrapperTransaction userEntity.toModel()
+        }
     }
 
     override suspend fun get(): UserModel? {

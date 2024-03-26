@@ -6,8 +6,9 @@ enum class ErrorCode() {;
         Forbidden(101),
         NotFound(102),
         Conflict(103),
-        DBOperationError(104),
-        InternalServerError(105)
+        BadRequest(104),
+        DBOperationError(105),
+        InternalServerError(106)
     }
 
     enum class BookError(val number: Int) {
@@ -15,7 +16,8 @@ enum class ErrorCode() {;
         Forbidden(101),
         NotFound(102),
         Conflict(103),
-        DBOperationError(104),
-        InternalServerError(105)
+        BadRequest(104),
+        DBOperationError(105),
+        InternalServerError(106)
     }
 }

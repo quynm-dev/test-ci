@@ -16,8 +16,8 @@ fun Route.bookController() {
     val bookService by inject<BookService>()
 
     route("/books") {
-        logger.debug { "GET: /books" }
         get {
+            logger.debug { "GET: /books" }
             bookService.list().mapBoth(
                 success = { call.respond(HttpStatusCode.OK, it) },
                 failure = { handleBookError(it) }

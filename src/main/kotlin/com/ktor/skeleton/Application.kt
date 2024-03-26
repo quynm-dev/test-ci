@@ -1,9 +1,6 @@
 package com.ktor.skeleton
 
-import com.ktor.skeleton.config.configureDatabase
-import com.ktor.skeleton.config.configureKoinDI
-import com.ktor.skeleton.config.configureRouting
-import com.ktor.skeleton.config.configureSerialization
+import com.ktor.skeleton.config.*
 import io.ktor.server.application.*
 import io.ktor.server.netty.*
 
@@ -16,4 +13,5 @@ fun Application.module() {
     configureRouting()
     configureKoinDI()
     configureSerialization()
+    configureExceptionInterceptor()
 }
