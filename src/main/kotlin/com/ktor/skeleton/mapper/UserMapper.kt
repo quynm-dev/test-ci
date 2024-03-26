@@ -1,6 +1,6 @@
 package com.ktor.skeleton.mapper
 
-import com.ktor.skeleton.data.dto.response.UserResponseDto
+import com.ktor.skeleton.data.dto.user.response.UserResponseDto
 import com.ktor.skeleton.data.entity.UserEntity
 import com.ktor.skeleton.data.model.UserModel
 

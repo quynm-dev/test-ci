@@ -1,9 +1,10 @@
-package com.ktor.skeleton.data.dto.response
+package com.ktor.skeleton.data.dto.user.response
 
 import kotlinx.serialization.Serializable
 import java.time.LocalDateTime
 import com.ktor.skeleton.helper.LocalDateTimeSerializer
 
+@Serializable
 data class UserResponseDto(
     val username: String,
     val name: String,

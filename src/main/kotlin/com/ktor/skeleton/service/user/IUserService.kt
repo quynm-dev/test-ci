@@ -1,7 +1,7 @@
 package com.ktor.skeleton.service.user
 
 import com.github.michaelbull.result.Result
-import com.ktor.skeleton.data.dto.response.UserResponseDto
+import com.ktor.skeleton.data.dto.user.response.UserResponseDto
 import com.ktor.skeleton.error.user.UserError
 
 interface IUserService {

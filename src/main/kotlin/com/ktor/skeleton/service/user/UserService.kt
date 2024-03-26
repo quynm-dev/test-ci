@@ -2,7 +2,7 @@ package com.ktor.skeleton.service.user
 
 import com.github.michaelbull.result.Ok
 import com.github.michaelbull.result.Result
-import com.ktor.skeleton.data.dto.response.UserResponseDto
+import com.ktor.skeleton.data.dto.user.response.UserResponseDto
 import com.ktor.skeleton.error.ErrorCode
 import com.ktor.skeleton.error.user.UserError
 import com.ktor.skeleton.repository.user.UserRepository

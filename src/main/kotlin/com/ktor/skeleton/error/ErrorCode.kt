@@ -1,7 +1,7 @@
 package com.ktor.skeleton.error
 
 enum class ErrorCode() {;
-    enum class UserError(val code: Int) {
+    enum class UserError(val number: Int) {
         Unauthorized(100),
         Forbidden(101),
         NotFound(102),
