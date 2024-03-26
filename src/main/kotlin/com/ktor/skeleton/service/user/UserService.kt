@@ -16,7 +16,7 @@ import com.ktor.skeleton.mapper.toDto
 class UserService(private val userRepository: UserRepository): IUserService {
     override suspend fun list(): Result<List<UserResponseDto>, UserError> {
         return try {
-            logger.debug { "[UserService:findAll]" }
+            logger.debug { "[UserService:list]" }
             val listUserModels = userRepository.list()
 
             Ok(listUserModels.map { it.toDto() })
