@@ -1,6 +1,7 @@
 package com.ktor.skeleton
 
 import com.ktor.skeleton.config.configureDatabase
+import com.ktor.skeleton.config.configureRouting
 import io.ktor.server.application.*
 import io.ktor.server.netty.*
 
@@ -10,4 +11,5 @@ fun main(args: Array<String>) {
 
 fun Application.module() {
     configureDatabase()
+    configureRouting()
 }
