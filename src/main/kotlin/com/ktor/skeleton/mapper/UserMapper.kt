@@ -1,8 +1,10 @@
 package com.ktor.skeleton.mapper
 
+import com.ktor.skeleton.data.dto.user.request.AuthenticateUserRequestDto
 import com.ktor.skeleton.data.dto.user.request.CreateUserRequestDto
 import com.ktor.skeleton.data.dto.user.response.UserResponseDto
 import com.ktor.skeleton.data.entity.UserEntity
+import com.ktor.skeleton.data.model.AuthenticateUserModel
 import com.ktor.skeleton.data.model.UserModel
 
 fun UserEntity.toModel(): UserModel {
@@ -18,4 +20,8 @@ fun UserModel.toDto(): UserResponseDto {
 fun CreateUserRequestDto.toModel(): UserModel {
     return UserModel(username = this.username, password = this.password, name = this.name, email = this.email,
         age = this.age)
+}
+
+fun AuthenticateUserRequestDto.toModel(): AuthenticateUserModel {
+    return AuthenticateUserModel(username = this.username, password = this.password)
 }

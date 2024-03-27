@@ -1,5 +1,6 @@
 package com.ktor.skeleton.repository.user
 
+import com.ktor.skeleton.data.model.AuthenticateUserModel
 import com.ktor.skeleton.data.model.UserModel
 
 interface IUserRepository {
@@ -8,4 +9,5 @@ interface IUserRepository {
     suspend fun get(): UserModel?
     suspend fun update(): UserModel?
     suspend fun delete(): Boolean
+    suspend fun authenticate(authenticateUserModel: AuthenticateUserModel): UserModel
 }

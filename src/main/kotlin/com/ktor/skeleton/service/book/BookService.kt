@@ -22,7 +22,7 @@ class BookService(private val bookRepository: BookRepository): IBookService {
             Ok(listBookModels.map { it.toDto() })
         } catch (err: ExposedSQLException) {
             logger.error { err.message }
-            Err(BookError.DBOperation(ErrorCode.BookError.DBOperationError, "ExposedSQLException"))
+            Err(BookError.DBOperation(ErrorCode.BookError.DBOperationError, "DBOperationError"))
         } catch (err: Exception) {
             logger.error { err.message }
             Err(BookError.InternalServerError(ErrorCode.BookError.InternalServerError, "InternalServerError"))
@@ -38,7 +38,18 @@ class BookService(private val bookRepository: BookRepository): IBookService {
     }
 
     override suspend fun get(userId: Int): Result<List<BookResponseDto>, BookError> {
-        TODO("Not yet implemented")
+        return try {
+            logger.debug { "[BookService:get]" }
+            val listBookModels = bookRepository.get(userId)
+
+            Ok(listBookModels.map { it.toDto() })
+        } catch (err: ExposedSQLException) {
+            logger.error { err.message }
+            Err(BookError.DBOperation(ErrorCode.BookError.DBOperationError, "DBOperationError"))
+        } catch (err: Exception) {
+            logger.error { err.message }
+            Err(BookError.InternalServerError(ErrorCode.BookError.InternalServerError, "InternalServerError"))
+        }
     }
 
     override suspend fun update(): Result<BookResponseDto, BookError> {

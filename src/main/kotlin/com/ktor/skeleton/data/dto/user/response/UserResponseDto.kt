@@ -13,3 +13,9 @@ data class UserResponseDto(
     @Serializable(with = LocalDateTimeSerializer::class)
     val createdAt: LocalDateTime
 )
+
+@Serializable
+data class AuthenticateUserResponseDto(
+    val accessToken: String,
+    val refreshToken: String
+)

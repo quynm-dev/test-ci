@@ -94,6 +94,8 @@ dependencies {
     // region security
     implementation("io.ktor:ktor-server-sessions-jvm")
     implementation("io.ktor:ktor-server-auth-jvm:$ktorVersion")
+    implementation("io.ktor:ktor-server-auth:$ktorVersion")
+    implementation("io.ktor:ktor-server-auth-jwt:$ktorVersion")
     implementation("com.ToxicBakery.library.bcrypt:bcrypt:+")
     // end region
 

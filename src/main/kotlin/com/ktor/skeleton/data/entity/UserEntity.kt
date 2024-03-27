@@ -9,7 +9,7 @@ import java.time.LocalDateTime
 
 object Users: IntIdTable("users") {
     val username = varchar("username", 64).uniqueIndex()
-    val password = varchar("password", 64)
+    val password = text("password")
     val name = varchar("name", 64)
     val email = varchar("email", 64)
     val age = integer("age").nullable()

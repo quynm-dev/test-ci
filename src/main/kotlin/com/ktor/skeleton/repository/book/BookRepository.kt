@@ -7,6 +7,8 @@ import com.ktor.skeleton.helper.logger
 import com.ktor.skeleton.helper.wrapperTransaction
 import com.ktor.skeleton.mapper.toModel
 import org.jetbrains.exposed.dao.load
+import org.jetbrains.exposed.sql.SortOrder
+import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.selectAll
 import org.koin.core.annotation.Singleton
 
@@ -31,7 +33,13 @@ class BookRepository: IBookRepository {
     }
 
     override suspend fun get(userId: Int): List<BookModel> {
-        TODO("Not yet implemented")
+        return wrapperTransaction {
+            logger.debug { "[BookRepository:get]" }
+
+            Books.select { Books.userId eq userId  }
+                .orderBy(Books.title, SortOrder.ASC)
+                .map { BookEntity.wrapRow(it).load(BookEntity::userId).toModel() }
+        }
     }
 
     override suspend fun update(): BookModel? {

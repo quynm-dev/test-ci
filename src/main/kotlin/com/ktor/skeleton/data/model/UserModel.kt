@@ -12,3 +12,8 @@ data class UserModel(
     val createdAt: LocalDateTime = LocalDateTime.now(),
     val updatedAt: LocalDateTime = LocalDateTime.now()
 )
+
+data class AuthenticateUserModel(
+    val username: String,
+    val password: String
+)

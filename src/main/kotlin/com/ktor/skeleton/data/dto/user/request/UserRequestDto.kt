@@ -24,3 +24,9 @@ data class CreateUserRequestDto(
         }
     }.throwOnFailure(this)
 }
+
+@Serializable
+data class AuthenticateUserRequestDto(
+    val username: String,
+    val password: String
+)
