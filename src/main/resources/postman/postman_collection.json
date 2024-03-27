@@ -1,0 +1,26 @@
+{
+	"info": {
+		"_postman_id": "0e41bf39-34f8-42ce-bfd9-c43f9ac10622",
+		"name": "Ktor skeleton",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31078921"
+	},
+	"item": [
+		{
+			"name": "/users",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "/users/authenticate",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
