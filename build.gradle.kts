@@ -108,3 +108,7 @@ dependencies {
     testImplementation("io.mockk:mockk:$mockkVersion")
     // end region
 }
+
+tasks.named<Test>("test") {
+    useJUnitPlatform()
+}

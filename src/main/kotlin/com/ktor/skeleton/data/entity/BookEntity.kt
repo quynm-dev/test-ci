@@ -1,6 +1,5 @@
 package com.ktor.skeleton.data.entity
 
-import com.ktor.skeleton.data.entity.Users.default
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
@@ -10,7 +9,7 @@ import java.time.LocalDateTime
 
 object Books: IntIdTable("books") {
     val title = varchar("title", 255)
-    val userId = reference("user", Users)
+    val userId = reference("users", Users)
     val author = varchar("author", 64)
     val isbn = varchar("isbn", 64).uniqueIndex()
     val createdAt = datetime("created_at").default(LocalDateTime.now())
