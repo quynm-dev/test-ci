@@ -13,6 +13,7 @@ data class CreateUserRequestDto(
     val name: String,
     val email: String,
     val age: Int?,
+    val role: Int,
 ) {
     fun validate() = Validation {
         CreateUserRequestDto::username required {}
@@ -22,6 +23,7 @@ data class CreateUserRequestDto(
         CreateUserRequestDto::email required {
             pattern(".+@.+\\..+") hint "Email is invalid"
         }
+        CreateUserRequestDto::role required {}
     }.throwOnFailure(this)
 }
 

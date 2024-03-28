@@ -13,6 +13,7 @@ object Users: IntIdTable("users") {
     val name = varchar("name", 64)
     val email = varchar("email", 64)
     val age = integer("age").nullable()
+    val role = integer("role")
     val createdAt = datetime("created_at").default(LocalDateTime.now())
     val updatedAt = datetime("updated_at").default(LocalDateTime.now())
 }
@@ -25,6 +26,7 @@ class UserEntity(id: EntityID<Int>): IntEntity(id) {
     var name by Users.name
     var email by Users.email
     var age by Users.age
+    var role by Users.role
     var createdAt by Users.createdAt
     var updatedAt by Users.updatedAt
 }

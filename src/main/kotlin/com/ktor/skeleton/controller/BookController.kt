@@ -10,18 +10,21 @@ import io.ktor.server.routing.*
 import org.koin.ktor.ext.inject
 import com.ktor.skeleton.helper.logger
 import com.ktor.skeleton.service.book.BookService
+import io.ktor.server.auth.*
 import io.ktor.util.pipeline.*
 
 fun Route.bookController() {
     val bookService by inject<BookService>()
 
-    route("/books") {
-        get {
-            logger.debug { "GET: /books" }
-            bookService.list().mapBoth(
-                success = { call.respond(HttpStatusCode.OK, it) },
-                failure = { handleBookError(it) }
-            )
+    authenticate {
+        route("/books") {
+            get {
+                logger.debug { "GET: /books" }
+                bookService.list().mapBoth(
+                    success = { call.respond(HttpStatusCode.OK, it) },
+                    failure = { handleBookError(it) }
+                )
+            }
         }
     }
 }

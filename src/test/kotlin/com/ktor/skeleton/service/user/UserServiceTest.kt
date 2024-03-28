@@ -63,7 +63,7 @@ class UserServiceTest {
     @Test
     fun testUserService_list_ReturnListUserResponseDto() = runBlocking {
         val userModel = UserModel(0, "john_doe", null, "John Doe", "john@gmail.com",
-            30)
+            30, 1)
         val userResponseDto = userModel.toDto()
 
         coEvery { userRepositoryMock.list() } returns listOf(userModel)

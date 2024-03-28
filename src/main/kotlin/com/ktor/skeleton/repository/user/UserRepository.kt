@@ -35,6 +35,7 @@ class UserRepository: IUserRepository {
                 name = userModel.name
                 email = userModel.email
                 age = userModel.age
+                role = userModel.role
             }
 
             return@wrapperTransaction userEntity.toModel()

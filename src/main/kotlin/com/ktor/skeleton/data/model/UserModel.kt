@@ -9,6 +9,7 @@ data class UserModel(
     val name: String,
     val email: String,
     val age: Int?,
+    val role: Int,
     val createdAt: LocalDateTime = LocalDateTime.now(),
     val updatedAt: LocalDateTime = LocalDateTime.now()
 )

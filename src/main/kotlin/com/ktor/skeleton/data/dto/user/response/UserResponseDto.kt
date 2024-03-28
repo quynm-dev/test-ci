@@ -10,6 +10,7 @@ data class UserResponseDto(
     val name: String,
     val email: String,
     val age: Int?,
+    val role: String,
     @Serializable(with = LocalDateTimeSerializer::class)
     val createdAt: LocalDateTime
 )
