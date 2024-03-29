@@ -3,7 +3,9 @@ package com.ktor.skeleton.config
 import com.auth0.jwt.JWT
 import com.auth0.jwt.algorithms.Algorithm
 import com.ktor.skeleton.data.dto.error.response.ErrorResponseDto
+import com.ktor.skeleton.data.dto.session.UserSessionDto
 import com.ktor.skeleton.error.ErrorCode
+import com.ktor.skeleton.helper.logger
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
@@ -29,6 +31,17 @@ fun Application.configureAuthentication() {
             challenge { defaultScheme, realm ->
                 call.respond(HttpStatusCode.Unauthorized,
                     ErrorResponseDto(ErrorCode.UserError.Unauthorized.number, "Unauthorized")) }
+        }
+
+        session<UserSessionDto>("session") {
+            validate { session: UserSessionDto ->
+                logger.debug { "Session debug" }
+                session
+            }
+            challenge {
+                call.respond(HttpStatusCode.Forbidden,
+                    ErrorResponseDto(ErrorCode.UserError.Unauthorized.number, "Forbidden"))
+            }
         }
     }
 }

@@ -15,4 +15,5 @@ fun Application.module() {
     configureKoinDI()
     configureSerialization()
     configureExceptionInterceptor()
+    configureSecurity()
 }

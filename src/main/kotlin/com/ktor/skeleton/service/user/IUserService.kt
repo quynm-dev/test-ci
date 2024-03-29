@@ -3,7 +3,7 @@ package com.ktor.skeleton.service.user
 import com.github.michaelbull.result.Result
 import com.ktor.skeleton.data.dto.user.request.AuthenticateUserRequestDto
 import com.ktor.skeleton.data.dto.user.request.CreateUserRequestDto
-import com.ktor.skeleton.data.dto.user.response.AuthenticateUserResponseDto
+import com.ktor.skeleton.data.dto.user.response.AuthenticateUserDto
 import com.ktor.skeleton.data.dto.user.response.UserResponseDto
 import com.ktor.skeleton.error.user.UserError
 
@@ -14,5 +14,5 @@ interface IUserService {
     suspend fun update(): Result<UserResponseDto, UserError>
     suspend fun delete(): Result<Boolean, UserError>
     suspend fun authenticate(authenticateUserRequestDto: AuthenticateUserRequestDto):
-            Result<AuthenticateUserResponseDto, UserError>
+            Result<AuthenticateUserDto, UserError>
 }

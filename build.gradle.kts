@@ -13,6 +13,7 @@ val konformVersion: String by project
 val cohortVersion: String by project
 val jUnitVersion: String by project
 val mockkVersion: String by project
+val redisClientVersion: String by project
 
 plugins {
     kotlin("jvm") version "1.9.23"
@@ -92,6 +93,7 @@ dependencies {
     // end region
 
     // region security
+    implementation("redis.clients:jedis:$redisClientVersion")
     implementation("io.ktor:ktor-server-sessions-jvm")
     implementation("io.ktor:ktor-server-auth-jvm:$ktorVersion")
     implementation("io.ktor:ktor-server-auth:$ktorVersion")

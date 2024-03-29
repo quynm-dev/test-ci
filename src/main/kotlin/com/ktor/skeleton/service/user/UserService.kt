@@ -14,7 +14,7 @@ import org.jetbrains.exposed.exceptions.ExposedSQLException
 import com.github.michaelbull.result.Err
 import com.ktor.skeleton.data.dto.user.request.AuthenticateUserRequestDto
 import com.ktor.skeleton.data.dto.user.request.CreateUserRequestDto
-import com.ktor.skeleton.data.dto.user.response.AuthenticateUserResponseDto
+import com.ktor.skeleton.data.dto.user.response.AuthenticateUserDto
 import com.ktor.skeleton.data.model.UserModel
 import com.ktor.skeleton.mapper.toDto
 import com.ktor.skeleton.mapper.toModel
@@ -73,14 +73,14 @@ class UserService(private val userRepository: UserRepository): IUserService {
     }
 
     override suspend fun authenticate(authenticateUserRequestDto: AuthenticateUserRequestDto):
-            Result<AuthenticateUserResponseDto, UserError> {
+            Result<AuthenticateUserDto, UserError> {
         return try {
             logger.debug { "[UserService:authenticate]" }
             val authenticateUserModel = authenticateUserRequestDto.toModel()
             val userModel = userRepository.authenticate(authenticateUserModel)
 
             val (accessToken, refreshToken) = buildAuthenticateCredentials(userModel)
-            Ok(AuthenticateUserResponseDto(accessToken, refreshToken))
+            Ok(AuthenticateUserDto(accessToken, refreshToken, userModel))
         } catch (err: IllegalArgumentException) {
             logger.error { err.message }
             Err(UserError.Unauthorized(ErrorCode.UserError.Unauthorized, "Unauthorized"))

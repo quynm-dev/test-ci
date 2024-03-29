@@ -8,10 +8,16 @@ import com.ktor.skeleton.data.entity.UserEntity
 import com.ktor.skeleton.data.model.AuthenticateUserModel
 import com.ktor.skeleton.data.model.UserModel
 import com.ktor.skeleton.helper.getKeyByValue
+import com.ktor.skeleton.data.dto.session.UserSessionDto
 
 fun UserEntity.toModel(): UserModel {
     return UserModel(id = this.id.value, username = this.username, password = this.password, name = this.name, email = this.email,
         age = this.age, role = this.role, createdAt = this.createdAt, updatedAt = this.updatedAt)
+}
+
+fun UserModel.toUserSessionDto(): UserSessionDto {
+    return UserSessionDto(id = this.id, username = this.username, name = this.name, email = this.email, age = this.age,
+        role = Role::number.getKeyByValue(this.role).toString())
 }
 
 fun UserModel.toDto(): UserResponseDto {
