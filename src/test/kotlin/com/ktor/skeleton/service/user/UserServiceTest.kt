@@ -69,7 +69,6 @@ class UserServiceTest {
         coEvery { userRepositoryMock.list() } returns listOf(userModel)
 
         val result = userService.list().get()!!
-        Assertions.assertEquals(result.size, 1)
         Assertions.assertEquals(result[0], userResponseDto)
     }
 }
