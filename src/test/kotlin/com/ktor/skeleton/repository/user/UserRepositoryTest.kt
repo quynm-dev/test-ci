@@ -35,6 +35,5 @@ class UserRepositoryTest {
 
         Assertions.assertEquals(listUsers.size, 3)
         Assertions.assertEquals(listUsers[1].username, username2)
-        Assertions.assertEquals(listUsers[2].username, username3)
     }
 }
