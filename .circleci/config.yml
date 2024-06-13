@@ -1,0 +1,66 @@
+version: 2.1
+
+executors:
+  jdk:
+    docker:
+      - image: cimg/openjdk:11.0
+      - image: cimg/mysql:8.0
+        environment:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: bfm_db
+
+jobs:
+  build:
+    executor: jdk
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - deps-{{ checksum "build.gradle.kts" }}
+            - deps-
+      - run:
+          name: build
+          command: ./gradlew build
+      - save_cache:
+            key: deps-{{ checksum "build.gradle.kts" }}
+            paths:
+                - ~/.gradle
+  test:
+    executor: jdk
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - deps-{{ checksum "build.gradle.kts" }}
+            - deps-
+      - run:
+          name: test
+          command: ./gradlew test
+      - save_cache:
+            key: deps-{{ checksum "build.gradle.kts" }}
+            paths:
+                - ~/.gradle
+  docker-build:
+    executor: jdk
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - deps-{{ checksum "build.gradle.kts" }}
+            - deps-
+      - run:
+          name: Build Docker image
+          command: echo "building docker image"
+
+workflows:
+  build-and-push:
+    jobs:
+      - build
+      - test
+      - docker-build:
+          requires:
+            - build
+            - test
+          filters:
+            branches:
+              only: main
