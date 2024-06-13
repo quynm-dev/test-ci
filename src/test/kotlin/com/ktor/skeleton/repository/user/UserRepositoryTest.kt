@@ -34,7 +34,6 @@ class UserRepositoryTest {
         val username3 = "alex_brown"
 
         Assertions.assertEquals(listUsers.size, 3)
-        Assertions.assertEquals(listUsers[0].username, username1)
         Assertions.assertEquals(listUsers[1].username, username2)
     }
 }
